@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
-
+import time
 app = Flask(__name__)
 app.config['MQTT_BROKER_URL'] = '192.168.0.210'
 app.config['MQTT_BROKER_PORT'] = 1883
@@ -14,10 +14,11 @@ mqtt = Mqtt(app)
 socketio = SocketIO(app)
 
 
-# @mqtt.on_connect()
-# def handle_connect(client, userdata, flags, rc):
-#     mqtt.subscribe('bureau/humidity')
-#     mqtt.subscribe('bureau/temperature')
+@mqtt.on_connect()
+def handle_connect(client, userdata, flags, rc):
+    mqtt.init_app(app)
+    mqtt.subscribe('bureau/humidity')
+    mqtt.subscribe('bureau/temperature')
 
 
 @mqtt.on_message()
@@ -37,6 +38,7 @@ def handle_mqtt_message(client, userdata, message):
 def index():
     try:
         mqtt.init_app(app)
+        time.sleep(5)
         mqtt.subscribe('bureau/humidity')
         mqtt.subscribe('bureau/temperature')
     except OSError:
