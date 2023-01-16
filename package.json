@@ -1,0 +1,22 @@
+{
+  "name": "test_flask_to_dht11",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tw_build": "npx tailwindcss -i ./static/src/input.css -o ./static/dist/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darksh3ll/test_flask_to_dht11.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darksh3ll/test_flask_to_dht11/issues"
+  },
+  "homepage": "https://github.com/darksh3ll/test_flask_to_dht11#readme",
+  "dependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}

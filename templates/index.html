@@ -3,40 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/dist/output.css') }}"/>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script defer src="{{ url_for('static', filename='script.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+            integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+            crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
-<style>
-.container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 100vh;
-}
-
-h1{
-    font-size:85px;
-}
-
-.box{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-</style>
 <body>
-<div class="container">
-
-<div class="box">
-    <h1> temperature</h1>
-    <h1 id="temperature">{{ temperature }}</h1>
-</div>
-    <div class="box">
-     <h1> humidité</h1>
-        <h1 id="humidity">{{ humidity }}</h1>
-</div>
+{#<h1 id="name"></h1>#}
+{#<div class="bg-black">#}
+{#    <div class="box">#}
+{#        <h1> temperature</h1>#}
+{#        <h1 id="temperature">{{ temperature }}</h1>#}
+{#    </div>#}
+{#    <div class="box">#}
+{#        <h1> Humidityss</h1>#}
+{#        <h1 id="humidity">{{ humidity }}</h1>#}
+{#    </div>#}
+{#</div>#}
+<div class="bg-slate-900 h-screen  ">
+    <div class="w-1/4 shadow-2xl">
+       <div class="pt-10-4">
+           <p class="text-slate-400 text-2xl pt-4">Bureau</p>
+       </div>
+    </div>
 </div>
 
 </body>

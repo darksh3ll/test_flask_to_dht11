@@ -8,6 +8,7 @@ function updateUI(data) {
 // Gestion de l'événement "mqtt_message" envoyé par le serveur
 socket.on('mqtt_message', function(data) {
     console.log(data)
+    document.querySelector('#name').innerHTML = data.topic.split('/')[0]
    if(data.topic === 'bureau/humidity') {
     document.querySelector("#humidity").innerHTML = data.payload;
   }

@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
-import time
+
 app = Flask(__name__)
 app.config['MQTT_BROKER_URL'] = '192.168.0.210'
 app.config['MQTT_BROKER_PORT'] = 1883
@@ -10,7 +10,7 @@ app.config['MQTT_PASSWORD'] = ''
 app.config['MQTT_KEEPALIVE'] = 5
 app.config['MQTT_TLS_ENABLED'] = False
 
-mqtt = Mqtt(app)
+mqtt = Mqtt(app, connect_async=True)
 socketio = SocketIO(app)
 
 
@@ -37,15 +37,10 @@ def handle_mqtt_message(client, userdata, message):
 @app.route('/')
 def index():
     try:
-        mqtt.init_app(app)
-        time.sleep(5)
-        mqtt.subscribe('bureau/humidity')
-        mqtt.subscribe('bureau/temperature')
+        return render_template('index.html')
     except OSError:
-        print("erreur")
-        return render_template('error.html', error_message="Serveur MQTT Indisponible")
-    return render_template('index.html')
+        return render_template('error.html')
 
 
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app, host="0.0.0.0", debug=True, use_reloader=True)

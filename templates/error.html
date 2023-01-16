@@ -2,9 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>error</title>
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/dist/output.css') }}"/>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+            integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+            crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <h1>erreur serveur mqtt</h1>
+<div class="h-screen bg-white">
+    <h1 class="text-xl text-center">Conditions météorologiques</h1>
+    <div class="max-w-sm rounded overflow-hidden shadow-md">
+        <div class="flex items-center mt-4">
+             <ion-icon name="thermometer-outline"></ion-icon>
+            <p class="text-gray-700">Température</p>
+            <p class="text-xl font-medium">25°C</p>
+        </div>
+
+
+    </div>
+</div>
 </body>
 </html>
