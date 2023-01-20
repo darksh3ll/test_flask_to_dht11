@@ -37,7 +37,7 @@ def handle_mqtt_message(client, userdata, message):
 @app.route('/')
 def index():
     try:
-        return render_template('index.html')
+        return render_template('main.html')
     except OSError:
         return render_template('error.html')
 
