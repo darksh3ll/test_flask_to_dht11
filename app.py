@@ -17,8 +17,8 @@ socketio = SocketIO(app)
 @mqtt.on_connect()
 def handle_connect(client, userdata, flags, rc):
     mqtt.init_app(app)
-    mqtt.subscribe('bureau/humidity')
-    mqtt.subscribe('bureau/temperature')
+    mqtt.subscribe('#')
+    # mqtt.subscribe('bureau/temperature')
 
 
 @mqtt.on_message()
@@ -27,11 +27,12 @@ def handle_mqtt_message(client, userdata, message):
         topic=message.topic,
         payload=message.payload.decode()
     )
-    if message.topic == 'bureau/humidity':
-        socketio.emit('mqtt_message', data=data)
-
-    if message.topic == 'bureau/temperature':
-        socketio.emit('mqtt_message', data=data)
+    socketio.emit('mqtt_message', data=data)
+    # if message.topic == 'bureau/humidity':
+    #     socketio.emit('mqtt_message', data=data)
+    #
+    # if message.topic == 'bureau/temperature':
+    #     socketio.emit('mqtt_message', data=data)
 
 
 @app.route('/')
