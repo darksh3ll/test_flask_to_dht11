@@ -10,12 +10,12 @@ const topicIdMap = {
 
 
 function setTemperatureColor(elementId, temperature) {
-   if (temperature >= 18 && temperature <= 26) {
-        document.getElementById(elementId).style.color = 'green';
+   if (temperature >= 22 && temperature <= 26) {
+        document.getElementById(elementId).style.color = '#22c55e';
     } else if (temperature >26 && temperature <=28) {
-        document.getElementById(elementId).style.color = 'yellow';
+        document.getElementById(elementId).style.color = '#eab308';
     } else {
-        document.getElementById(elementId).style.color = 'red';
+        document.getElementById(elementId).style.color = '#ef4444';
     }
 }
 

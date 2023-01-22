@@ -549,6 +549,22 @@ video {
   flex: 1 1 0%;
 }
 
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
 .grid-cols-\[60px\2c 1fr\2c 1fr\] {
   grid-template-columns: 60px 1fr 1fr;
 }
@@ -619,6 +635,14 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pr-1 {
+  padding-right: 0.25rem;
+}
+
+.pl-1 {
+  padding-left: 0.25rem;
 }
 
 .text-center {
