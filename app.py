@@ -1,8 +1,10 @@
 from flask import Flask, render_template
+from flask_cors import CORS
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 app.config['MQTT_BROKER_URL'] = '192.168.0.210'
 app.config['MQTT_BROKER_PORT'] = 1883
 app.config['MQTT_USERNAME'] = ''

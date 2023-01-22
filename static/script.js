@@ -9,21 +9,37 @@ const topicIdMap = {
 };
 
 
-function changeTempColor(data){
-
+function setTemperatureColor(elementId, temperature) {
+   if (temperature >= 18 && temperature <= 26) {
+        document.getElementById(elementId).style.color = 'green';
+    } else if (temperature >26 && temperature <=28) {
+        document.getElementById(elementId).style.color = 'yellow';
+    } else {
+        document.getElementById(elementId).style.color = 'red';
+    }
 }
 
 
-function changeHumidityColor(){
-
+function setHumidityColor(elementId, humidity) {
+    if (humidity >= 20 && humidity <=55) {
+        document.getElementById(elementId).style.color = 'green';
+    } else if (humidity >= 55 && humidity <=60) {
+        document.getElementById(elementId).style.color = 'yellow';
+    }else {
+        document.getElementById(elementId).style.color = 'red';
+    }
 }
 
 socket.on('mqtt_message', function (data) {
     console.log(data)
-    const room = data.topic.split('/')[1]
     const elementId = topicIdMap[data.topic];
     if (elementId) {
         document.getElementById(elementId).innerHTML = data.payload;
+        if(elementId.includes("temperature")){
+            setTemperatureColor(elementId,data.payload)
+        }else if (elementId.includes("humidity")){
+            setHumidityColor(elementId,data.payload)
+        }
     } else {
         console.log(`Received message for unknown topic: ${data.topic}`)
     }
