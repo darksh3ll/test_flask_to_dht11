@@ -14,24 +14,17 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-{#<h1 id="name"></h1>#}
-{#<div class="bg-black">#}
-{#    <div class="box">#}
-{#        <h1> temperature</h1>#}
-{#        <h1 id="temperature">{{ temperature }}</h1>#}
-{#    </div>#}
-{#    <div class="box">#}
-{#        <h1> Humidityss</h1>#}
-{#        <h1 id="humidity">{{ humidity }}</h1>#}
-{#    </div>#}
-{#</div>#}
-<div class="bg-slate-900 h-screen  ">
-    <div class="w-1/4 shadow-2xl">
-        <div class="pt-10-4">
-            <p class="text-slate-400 text-2xl pt-4">Bureau</p>
+<div class="h-screen bg-white">
+    <h1 class="text-xl text-center">Conditions météorologiques</h1>
+    <div class="max-w-sm rounded overflow-hidden shadow-md">
+        <div class="flex items-center mt-4">
+             <ion-icon name="thermometer-outline"></ion-icon>
+            <p class="text-gray-700">Température</p>
+            <p class="text-xl font-medium">25°C</p>
         </div>
+
+
     </div>
 </div>
-
 </body>
 </html>

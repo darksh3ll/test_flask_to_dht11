@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/dist/output.css') }}"/>
+    <script defer src="https://kit.fontawesome.com/51a14733bc.js" crossorigin="anonymous"></script>
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+            integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+            crossorigin="anonymous"></script>
+    <title>Vite App</title>
+</head>
+<body>
+<div class="bg-slate-800 md:p-10 m-auto " id="app">
+    <div class=" grid gap-4 md:grid-cols-2 ">
+
+        {#SALON#}
+        <div class="shadow-md shadow-slate-900 rounded-md grid grid-rows-6">
+            <div class="flex justify-center">
+                <p class="text-3xl p-5 tracking-widest text-slate-400 flex-1">Salon</p>
+                <i class="fa-solid fa-battery-empty text-red-500 text-3xl p-5"></i>
+            </div>
+
+            <!-- temperature -->
+            <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                <i class="fa-solid fa-temperature-three-quarters text-xl text-slate-500"></i>
+                <p class="text-xl text-slate-500">Température</p>
+                <p class="text-2xl">0<span class="text-slate-500">C</span></p>
+            </div>
+
+            <!-- humidity -->
+            <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                <i class="fa-solid fa-droplet  text-xl text-slate-500"></i>
+                <p class="text-xl text-slate-500">Humidity</p>
+                <p class="text-2xl">0 <span class="text-slate-500">%</span></p>
+            </div>
+            <!-- CO2 -->
+            <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                <i class="fa-solid fa-skull  text-xl text-slate-500"></i>
+                <p class="text-xl text-slate-500">CO2</p>
+                <p class="text-2xl">0 <span class="text-slate-500">PPM</span></p>
+            </div>
+            <!-- PM2.5 -->
+            <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                <i class="fa-solid fa-leaf  text-xl text-slate-500"></i>
+                <p class="text-xl text-slate-500">PM 2.5</p>
+                <p class="text-2xl">0 <span class="text-slate-500">UG/M3</span></p>
+            </div>
+
+            <!-- PM2.10 -->
+            <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                <i class="fa-solid fa-leaf  text-xl text-slate-500"></i>
+                <p class="text-xl text-slate-500">PM 10</p>
+                <p class="text-2xl">0 <span class="text-slate-500">UG/M3</span></p>
+            </div>
+
+        </div>
+        {#CHAMBRE#}
+        <div class="shadow-md shadow-slate-900 rounded-md grid grid-rows-6">
+
+            <div class="flex justify-center">
+                <p class="text-3xl p-5 tracking-widest text-slate-400 flex-1">Chambre</p>
+                <i class="fa-solid fa-battery-full text-green-500 text-3xl p-5"></i>
+            </div>
+
+            <!-- temperature -->
+            <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                <i class="fa-solid fa-temperature-three-quarters text-xl text-slate-500"></i>
+                <p class="text-xl text-slate-500">Température</p>
+                <div class=" flex items-center">
+                    <p id="chambre_temperature" class="text-2xl">0 </p>
+                    <p class="text-slate-500">C</p>
+                </div>
+            </div>
+
+            <!-- humidity -->
+            <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                <i class="fa-solid fa-droplet  text-xl text-slate-500"></i>
+                <p class="text-xl text-slate-500">Humidity</p>
+                <div class="flex items-center">
+                    <p id="chambre_humidity" class="text-2xl">0 </p>
+                    <p class="text-slate-500">%</p>
+                </div>
+
+            </div>
+            <!-- CO2 -->
+            <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                <i class="fa-solid fa-skull  text-xl text-slate-500"></i>
+                <p class="text-xl text-slate-500">CO2</p>
+                <p class="text-2xl">0 <span class="text-slate-500">PPM</span></p>
+            </div>
+            <!-- PM2.5 -->
+            <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                <i class="fa-solid fa-leaf  text-xl text-slate-500"></i>
+                <p class="text-xl text-slate-500">PM 2.5</p>
+                <p class="text-2xl">0 <span class="text-slate-500">UG/M3</span></p>
+            </div>
+
+            <!-- PM2.10 -->
+            <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                <i class="fa-solid fa-leaf  text-xl text-slate-500"></i>
+                <p class="text-xl text-slate-500">PM 10</p>
+                <p class="text-2xl">0 <span class="text-slate-500">UG/M3</span></p>
+            </div>
+
+        </div>
+        <div class="shadow-md shadow-slate-900 rounded-md">
+            {#EXTERIEUR#}
+            <div class="shadow-md shadow-slate-900 rounded-md grid grid-rows-6">
+
+                <div class="flex justify-center">
+                    <p class="text-3xl p-5 tracking-widest text-slate-400 flex-1">Exterieur</p>
+                    <i class="fa-solid fa-battery-half text-yellow-500 text-3xl p-5"></i>
+                </div>
+
+                <!-- temperature -->
+                <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                    <i class="fa-solid fa-temperature-three-quarters text-xl text-slate-500"></i>
+                    <p class="text-xl text-slate-500">Température</p>
+                    <p class="text-xl text-green-700">0 <span class="text-slate-500">C</span></p>
+                </div>
+
+                <!-- humidity -->
+                <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                    <i class="fa-solid fa-droplet  text-xl text-slate-500"></i>
+                    <p class="text-xl text-slate-500">Humidity</p>
+                    <p class="text-xl text-red-500">0 <span class="text-slate-500">%</span></p>
+                </div>
+                <!-- CO2 -->
+                <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                    <i class="fa-solid fa-skull  text-xl text-slate-500"></i>
+                    <p class="text-xl text-slate-500">CO2</p>
+                    <p class="text-xl text-yellow-500">0 <span class="text-slate-500">PPM</span></p>
+                </div>
+                <!-- PM2.5 -->
+                <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                    <i class="fa-solid fa-leaf  text-xl text-slate-500"></i>
+                    <p class="text-xl text-slate-500">PM 2.5</p>
+                    <p class="text-xl text-yellow-500">0 <span class="text-slate-500">UG/M3</span></p>
+                </div>
+
+                <!-- PM2.10 -->
+                <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                    <i class="fa-solid fa-leaf  text-xl text-slate-500"></i>
+                    <p class="text-xl text-slate-500">PM 10</p>
+                    <p class="text-xl text-yellow-500">0 <span class="text-slate-500">UG/M3</span></p>
+                </div>
+
+            </div>
+        </div>
+        <div class="shadow-md shadow-slate-900 rounded-md">
+            {#            BUREAU#}
+            <div class="shadow-md shadow-slate-900 rounded-md grid grid-rows-6">
+
+                <div class="flex justify-center">
+                    <p id="name" class="text-3xl p-5 tracking-widest text-slate-400 flex-1">Bureau</p>
+                    <i class="fa-solid fa-battery-full text-green-500 text-3xl p-5"></i>
+                </div>
+
+
+                <!-- temperature -->
+                <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                    <i class=" fa-solid fa-temperature-three-quarters text-xl text-slate-500"></i>
+                    <p class="text-xl text-slate-500">Température</p>
+                    <div class="flex items-center">
+                        <p id="bureau_temperature" class="text-2xl">0 </p>
+                        <p class="text-slate-500 pl-1">C</p>
+                    </div>
+
+                </div>
+
+                <!-- humidity -->
+                <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                    <i class="fa-solid fa-droplet  text-xl text-slate-500"></i>
+                    <p class="text-xl text-slate-500">Humidity</p>
+                    <div class="flex items-center">
+                        <p id="bureau_humidity" class="text-2xl">0 </p>
+                        <p class="text-slate-500"> %</p>
+                    </div>
+
+                </div>
+                <!-- CO2 -->
+                <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                    <i class="fa-solid fa-skull  text-xl text-slate-500"></i>
+                    <p class="text-xl text-slate-500">CO2</p>
+                    <p class="text-2xl ">0 <span class="text-slate-500">PPM</span></p>
+                </div>
+                <!-- PM2.5 -->
+                <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                    <i class="fa-solid fa-leaf  text-xl text-slate-500"></i>
+                    <p class="text-xl text-slate-500">PM 2.5</p>
+                    <p class="text-2xl ">0 <span class="text-slate-500">UG/M3</span></p>
+                </div>
+
+                <!-- PM2.10 -->
+                <div class=" p-4 grid grid-cols-[60px,1fr,1fr] place-items-center justify-items-start ">
+                    <i class="fa-solid fa-leaf  text-xl text-slate-500"></i>
+                    <p class="text-xl text-slate-500">PM 10</p>
+                    <p class="text-2xl">0 <span class="text-slate-500">UG/M3</span></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
